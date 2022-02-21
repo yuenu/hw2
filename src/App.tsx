@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import { Record } from '@/types'
-import { MockData, taipeiDistricts } from '@/mock'
+import { taipeiDistricts } from '@/mock'
 import { Chart, Tab } from '@/components'
 
 function App() {
@@ -32,7 +32,21 @@ function App() {
   )
 
   useEffect(() => {
-    setData(MockData.result.records)
+    const fetcher = async () => {
+      await fetch(
+        'https://www.ris.gov.tw/rs-opendata/api/v1/datastore/ODRP019/110',
+        {
+          method: 'GET',
+          headers: {
+            Connection: 'keep-alive',
+            Host: 'www.ris.gov.tw',
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((res) => setData(res.responseData))
+    }
+    fetcher()
   }, [])
 
   useEffect(() => {
