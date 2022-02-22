@@ -1,9 +1,4 @@
-export interface Field {
-  type: string
-  id: string
-}
-
-export interface Record {
+export interface ResponseData {
   statistic_yyy: string
   district_code: string
   site_id: string
@@ -19,15 +14,12 @@ export interface Record {
   household_single_f: string
 }
 
-export interface Result {
-  resource_id: string
-  limit: number
-  total: number
-  fields: Field[]
-  records: Record[]
-}
-
-export interface RootObject {
-  success: boolean
-  result: Result
+export interface Response {
+  responseCode: string
+  responseMessage: string
+  totalPage: string
+  totalDataSize: string
+  page: string
+  pageDataSize: string
+  responseData: ResponseData[]
 }

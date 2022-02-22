@@ -1,4 +1,5 @@
-import { Record } from '@/types'
+import { ResponseData } from '@/types'
+import { ConverToNumberAndCalculateRate } from '@/utils'
 
 const chartNumber = [
   '90%',
@@ -14,33 +15,29 @@ const chartNumber = [
 ]
 
 type ChartProps = {
-  display: Record
+  display: ResponseData
 }
 
 const Chart = ({ display }: ChartProps) => {
-  const rateHouseholdOrdinaryMale =
-    (parseInt(display.household_ordinary_f) /
-      (parseInt(display.household_ordinary_m) +
-        parseInt(display.household_ordinary_f))) *
-    100
+  const rateHouseholdOrdinaryMale = ConverToNumberAndCalculateRate(
+    display.household_ordinary_f,
+    display.household_ordinary_m
+  )
 
-  const rateHouseholdOrdinaryFemale =
-    (parseInt(display.household_ordinary_m) /
-      (parseInt(display.household_ordinary_m) +
-        parseInt(display.household_ordinary_f))) *
-    100
+  const rateHouseholdOrdinaryFemale = ConverToNumberAndCalculateRate(
+    display.household_ordinary_m,
+    display.household_ordinary_f
+  )
 
-  const rateHouseholdSingleMale =
-    (parseInt(display.household_single_m) /
-      (parseInt(display.household_single_m) +
-        parseInt(display.household_single_f))) *
-    100
+  const rateHouseholdSingleMale = ConverToNumberAndCalculateRate(
+    display.household_single_m,
+    display.household_single_f
+  )
 
-  const rateHouseholdSingleFemale =
-    (parseInt(display.household_single_f) /
-      (parseInt(display.household_single_m) +
-        parseInt(display.household_single_f))) *
-    100
+  const rateHouseholdSingleFemale = ConverToNumberAndCalculateRate(
+    display.household_single_f,
+    display.household_single_m
+  )
 
   return (
     <div className="chart">
@@ -57,7 +54,12 @@ const Chart = ({ display }: ChartProps) => {
             <th>共同生活戶</th>
             <td style={{ height: `${rateHouseholdOrdinaryMale}%` }}>
               <span>{display.household_ordinary_m}</span>
-              <div>{rateHouseholdOrdinaryMale.toFixed(2)}%</div>
+              <div>
+                {rateHouseholdOrdinaryMale === NaN
+                  ? '1%'
+                  : rateHouseholdOrdinaryMale.toFixed(2)}
+                %
+              </div>
             </td>
             <td style={{ height: `${rateHouseholdOrdinaryFemale}%` }}>
               <span>{display.household_ordinary_f}</span>

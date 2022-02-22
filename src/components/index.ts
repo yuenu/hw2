@@ -1,2 +1,5 @@
 export { default as Chart } from './Chart'
 export { default as Tab } from './Tab'
+export { default as Spinner } from './Spinner'
+export { default as Villages } from './Villages'
+export { default as Header } from './Header'
