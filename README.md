@@ -2,12 +2,21 @@
 
 [Live Demo](https://data-gov-fetch.web.app/)
 
-![](./screenshot.png)
+This repo Fetch data from: [reference](https://data.gov.tw/dataset/14299)
 
-## Architecture
+![desktop](./design/screenshot.png)
 
-- React.js
-- Typescript
+![mobile](./design/screenshot-mobile.png)
+
+## Built with
+
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- [React.js](https://reactjs.org/) - using react hook
+- Typescript - for pass type check
+- [Firebase](https://firebase.google.com/) - for depoly
+- Github Actions - every time commit will re-build the project and deploy on firebase
 
 ## Code quality
 
