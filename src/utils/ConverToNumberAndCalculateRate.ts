@@ -3,6 +3,9 @@
  *
  * @param num1 string - Numerator 分子
  * @param num2 string
+ * @returns num1 / (num1 + num2)
+ * 
+ * 
  */
 export const ConverToNumberAndCalculateRate = (
   num1: string,
